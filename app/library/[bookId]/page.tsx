@@ -41,7 +41,7 @@ export default function BookPage() {
             <CardContent className="p-0">
               <div className="aspect-[2/3] relative">
                 <Image
-                  src={book.cover_url || '/static/books/placeholder.jpg'}
+                  src={book.cover_url || '/static/books/none.jpg'}
                   alt={book.title}
                   fill
                   className="object-cover"

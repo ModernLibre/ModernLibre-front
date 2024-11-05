@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { fetchBook } from '@/lib/api'
 
 export interface Book {
   id: number
@@ -19,22 +20,30 @@ export function useBook(bookId: number) {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    async function fetchBook() {
+    let mounted = true;
+
+    async function getBook() {
       try {
-        const response = await fetch(`http://localhost:8000/library/${bookId}`)
-        if (!response.ok) {
-          throw new Error('Failed to fetch book')
+        const data = await fetchBook(bookId)
+        if (mounted) {
+          setBook(data)
         }
-        const data = await response.json()
-        setBook(data)
       } catch (err) {
-        setError(err instanceof Error ? err : new Error('Failed to fetch book'))
+        if (mounted) {
+          setError(err instanceof Error ? err : new Error('Failed to fetch book'))
+        }
       } finally {
-        setLoading(false)
+        if (mounted) {
+          setLoading(false)
+        }
       }
     }
 
-    fetchBook()
+    getBook()
+
+    return () => {
+      mounted = false
+    }
   }, [bookId])
 
   return { book, loading, error }

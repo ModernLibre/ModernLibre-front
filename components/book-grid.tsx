@@ -5,7 +5,8 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Download, Star } from 'lucide-react'
 import Link from 'next/link'
-import { Book } from '@/hooks/use-book'
+import { useBooks } from '@/hooks/use-books'
+import type { Book } from '@/hooks/use-book'
 
 interface BookCardProps {
   book: Book
@@ -102,9 +103,30 @@ const mockBooks: Book[] = [
 ]
 
 export function BookGrid() {
+  const { books, loading, error } = useBooks()
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {[...Array(10)].map((_, i) => (
+          <Card key={i} className="animate-pulse">
+            <div className="aspect-[2/3] bg-muted" />
+            <CardFooter className="flex flex-col items-start p-4">
+              <div className="h-4 w-3/4 bg-muted rounded mb-2" />
+              <div className="h-3 w-1/2 bg-muted rounded" />
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    )
+  }
+
+  // Combine API books with mock books, or just show mock books if API fails
+  const displayBooks = error ? mockBooks : [...books, ...mockBooks]
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-      {mockBooks.map((book) => (
+      {displayBooks.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}
     </div>

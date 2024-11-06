@@ -15,6 +15,39 @@ import {
   Tags
 } from 'lucide-react'
 
+const libraryLinks = [
+  {
+    title: "All Books",
+    href: "/library",
+    icon: Library
+  },
+  {
+    title: "Downloaded",
+    href: "/library/downloaded",
+    icon: Download
+  },
+  {
+    title: "Top Rated",
+    href: "/library/top-rated",
+    icon: Star
+  },
+  {
+    title: "Recently Added",
+    href: "/library/recently-added",
+    icon: Clock
+  },
+  {
+    title: "Favorites",
+    href: "/library/favorites",
+    icon: Heart
+  },
+  {
+    title: "Reading List",
+    href: "/library/reading-list",
+    icon: BookMarked
+  }
+]
+
 const categories = [
   "Fiction",
   "Non-Fiction",
@@ -39,36 +72,22 @@ export function Sidebar({ className }: SidebarProps) {
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold">Library</h2>
           <div className="space-y-1">
-            <Button
-              variant={pathname === '/library' ? 'secondary' : 'ghost'}
-              className="w-full justify-start gap-2"
-              asChild
-            >
-              <Link href="/library">
-                <Library className="h-4 w-4" />
-                All Books
-              </Link>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Download className="h-4 w-4" />
-              Downloaded
-            </Button>
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Star className="h-4 w-4" />
-              Top Rated
-            </Button>
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Clock className="h-4 w-4" />
-              Recently Added
-            </Button>
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Heart className="h-4 w-4" />
-              Favorites
-            </Button>
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <BookMarked className="h-4 w-4" />
-              Reading List
-            </Button>
+            {libraryLinks.map((link) => {
+              const Icon = link.icon
+              return (
+                <Button
+                  key={link.href}
+                  variant={pathname === link.href ? 'secondary' : 'ghost'}
+                  className="w-full justify-start gap-2"
+                  asChild
+                >
+                  <Link href={link.href}>
+                    <Icon className="h-4 w-4" />
+                    {link.title}
+                  </Link>
+                </Button>
+              )
+            })}
           </div>
         </div>
         <div className="px-3 py-2">

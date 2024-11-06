@@ -51,7 +51,7 @@ function BookCard({ book }: BookCardProps) {
 // Temporary mock data until we implement the full API
 const mockBooks: Book[] = [
   {
-    id: 1,
+    id: 1001,
     title: "The Design of Everyday Things",
     author: "Don Norman",
     description: "A powerful primer on how design serves as the interface between objects and users",
@@ -61,7 +61,7 @@ const mockBooks: Book[] = [
     addedDate: new Date().toISOString()
   },
   {
-    id: 2,
+    id: 1002,
     title: "Atomic Habits",
     author: "James Clear",
     description: "Tiny Changes, Remarkable Results",
@@ -72,7 +72,7 @@ const mockBooks: Book[] = [
   },
 
   {
-    id: 3,
+    id: 1003,
     title: "Deep Work",
     author: "Cal Newport",
     description: "Somthing about deep work",
@@ -82,7 +82,7 @@ const mockBooks: Book[] = [
     addedDate: new Date().toISOString()
   },
   {
-    id: 4,
+    id: 1004,
     title: "The Psychology of Money",
     author: "Morgan Housel",
     description: "Somthing about deep work",
@@ -92,7 +92,7 @@ const mockBooks: Book[] = [
     addedDate: new Date().toISOString()
   },
   {
-    id: 323,
+    id: 1323,
     title: "The Rust Programming Language",
     author: "Steve Klabnik and Carol Nichols",
     description: "A comprehensive guide to Rust programming.",
@@ -122,7 +122,7 @@ export function BookGrid() {
   }
 
   // Combine API books with mock books, or just show mock books if API fails
-  const displayBooks = error ? mockBooks : [...books, ...mockBooks]
+  const displayBooks = error ? mockBooks : [...books]
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

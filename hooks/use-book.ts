@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { fetchBook } from '@/lib/api'
+import { fetchBook, prefetchBooks } from '@/lib/api'
 
 export interface Book {
   id: number
@@ -27,6 +27,8 @@ export function useBook(bookId: number) {
         const data = await fetchBook(bookId)
         if (mounted) {
           setBook(data)
+          // Prefetch books list for smoother navigation back to library
+          prefetchBooks()
         }
       } catch (err) {
         if (mounted) {

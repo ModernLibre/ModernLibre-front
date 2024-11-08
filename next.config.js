@@ -6,7 +6,7 @@ const nextConfig = {
   },
   images: { unoptimized: true },
   // Only use rewrites in development
-  ...({
+  ...(process.env.NODE_ENV === 'development' && {
     async rewrites() {
       return [
         {

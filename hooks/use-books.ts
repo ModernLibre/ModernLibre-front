@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { fetchBooks } from '@/lib/api'
+import { fetchBooks, prefetchBook } from '@/lib/api'
 import type { Book } from './use-book'
 
 export function useBooks() {
@@ -17,6 +17,10 @@ export function useBooks() {
         const data = await fetchBooks()
         if (mounted) {
           setBooks(Array.isArray(data) ? data : [])
+          // Prefetch first few books for faster detail view
+          data.slice(0, 5).forEach((book: { id: number }) => {
+            prefetchBook(book.id)
+          })
         }
       } catch (err) {
         if (mounted) {

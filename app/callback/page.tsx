@@ -1,67 +1,38 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { initCasdoorSDK } from '@/lib/casdoor'
+import { useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
-interface User {
-  name: string;
-  displayName: string;
-  avatar: string;
-  email: string;
-  phone: string;
-  [key: string]: any;
-}
-
-interface AuthContextType {
-  user: User | null;
-  login: () => void;
-  logout: () => void;
-  loading: boolean;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+export default function CallbackPage() {
   const router = useRouter()
-
+  const searchParams = useSearchParams()
+  
   useEffect(() => {
-    // Check if we have a user in localStorage
-    const storedUser = localStorage.getItem('casdoorUser')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
-    }
-    setLoading(false)
-  }, [])
+    const handleCallback = async () => {
+      const code = searchParams.get('code')
+      const state = searchParams.get('state')
 
-  const login = () => {
-    const sdk = initCasdoorSDK()
-    if (sdk) {
-      sdk.signin_redirect()
-    } else {
-      console.error('Failed to initialize Casdoor SDK')
-    }
-  }
+      if (!code || !state) {
+        console.error('Missing code or state')
+        router.push('/login')
+        return
+      }
 
-  const logout = () => {
-    localStorage.removeItem('casdoorUser')
-    setUser(null)
-    router.push('/')
-  }
+      localStorage.setItem('code', code)
+      console.log('code:', code)
+      router.push('/')
+
+    }
+
+    handleCallback()
+  }, [router, searchParams])
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {children}
-    </AuthContext.Provider>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold mb-2">Authenticating...</h2>
+        <p className="text-muted-foreground">Please wait while we complete the login process.</p>
+      </div>
+    </div>
   )
-}
-
-export const useAuth = () => {
-  const context = useContext(AuthContext)
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
-  return context
 }

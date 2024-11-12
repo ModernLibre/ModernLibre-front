@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-const API_BASE_URL = process.env.API_BASE_URL || '/api';
+const API_BASE_URL = process.env.API_BASE_URL || '/back-api';
 const TIMEOUT_MS = 5000; // 5 seconds timeout
 
 // Create an in-memory cache for books

@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { Sidebar } from "@/components/sidebar"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ModeToggle } from "@/components/mode-toggle"
+import { UserMenu } from "@/components/user-menu"
 import { Search } from 'lucide-react'
 import Link from 'next/link'
 import { LucideIcon } from 'lucide-react'
@@ -44,9 +44,7 @@ export function LibraryLayout({
           </div>
           <div className="flex items-center gap-4">
             <ModeToggle />
-            <Link href="/login">
-              <Button variant="outline">Sign In</Button>
-            </Link>
+            <UserMenu />
           </div>
         </div>
       </header>

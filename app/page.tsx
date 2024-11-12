@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SearchBar } from '@/components/search-bar'
+import { UserMenu } from '@/components/user-menu'
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, BookMarked, Users, Download } from 'lucide-react'
 
@@ -18,9 +19,7 @@ export default function HomePage() {
           </div>
           <div className="flex items-center gap-4">
             <ModeToggle />
-            <Link href="/login">
-              <Button variant="outline">Sign In</Button>
-            </Link>
+            <UserMenu />
           </div>
         </div>
       </header>

@@ -1,8 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { useAuth } from '@/components/auth-provider'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Library, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
@@ -23,15 +27,17 @@ export default function LoginPage() {
           <div className="flex justify-center mb-2">
             <Library className="h-8 w-8" />
           </div>
-          <CardTitle>ModernLibre Admin</CardTitle>
+          <CardTitle>Welcome back</CardTitle>
+          <CardDescription>Choose your preferred login method</CardDescription>
         </CardHeader>
         <CardContent>
-          <Button 
-            className="w-full" 
-            onClick={login}
-          >
-            Sign in with Casdoor
-          </Button>
+              <Button 
+                className="w-full" 
+                onClick={login}
+                variant="outline"
+              >
+                Sign in with Casdoor
+              </Button>
         </CardContent>
       </Card>
     </div>

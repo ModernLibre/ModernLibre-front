@@ -1,5 +1,5 @@
 import { ModeToggle } from "@/components/mode-toggle"
-import { Button } from "@/components/ui/button"
+import { UserMenu } from "@/components/user-menu"
 
 export default function DashboardLayout({
   children,
@@ -13,7 +13,7 @@ export default function DashboardLayout({
           <h1 className="text-2xl font-bold">ModernLibre Admin</h1>
           <div className="flex items-center gap-4">
             <ModeToggle />
-            <Button variant="outline">Logout</Button>
+            <UserMenu />
           </div>
         </div>
       </header>

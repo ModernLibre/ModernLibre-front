@@ -13,7 +13,7 @@ export async function GET(request: Request) {
       )
     }
 
-    const response = await fetch(`${process.env.CASDOOR_SERVER_URL}/api/userinfo`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_CASDOOR_SERVER_URL}/api/userinfo`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

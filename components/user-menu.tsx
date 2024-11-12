@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useAuth } from '@/components/auth-provider'
 import { Button } from "@/components/ui/button"
 import {
@@ -16,8 +17,15 @@ import Link from 'next/link'
 
 export function UserMenu() {
   const { user, logout, loading } = useAuth()
+  const [isLoaded, setIsLoaded] = useState(false)
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading) {
+      setIsLoaded(true)
+    }
+  }, [loading])
+
+  if (!isLoaded) {
     return null
   }
 

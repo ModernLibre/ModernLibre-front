@@ -42,7 +42,7 @@ export function getSigninUrl() {
   try {
     const state = Math.random().toString(36).substring(7)
     localStorage.setItem('casdoorState', state)
-    const signinUrl = sdk.getSigninUrl(state)
+    const signinUrl = sdk.getSigninUrl()
     console.log('Generated signin URL:', signinUrl)
     return signinUrl
   } catch (error) {

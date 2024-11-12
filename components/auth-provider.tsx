@@ -29,11 +29,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('casdoorUser')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
+    const checkAuth = () => {
+      const storedUser = localStorage.getItem('casdoorUser')
+      if (storedUser) {
+        setUser(JSON.parse(storedUser))
+        document.cookie = 'auth=true; path=/'
+      }
+      setLoading(false)
     }
-    setLoading(false)
+
+    checkAuth()
+    window.addEventListener('storage', checkAuth)
+    return () => window.removeEventListener('storage', checkAuth)
   }, [])
 
   const login = () => {
@@ -51,6 +58,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     localStorage.removeItem('casdoorUser')
     localStorage.removeItem('casdoorState')
+    document.cookie = 'auth=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT'
     setUser(null)
     router.push('/')
     toast.success('Logged out successfully')

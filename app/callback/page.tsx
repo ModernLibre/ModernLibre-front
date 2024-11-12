@@ -24,14 +24,6 @@ export default function CallbackPage() {
         return
       }
 
-      // Verify state to prevent CSRF attacks
-      // if (state !== storedState) {
-      //   console.error('State mismatch', { received: state, stored: storedState })
-      //   toast.error('Authentication failed: Invalid state')
-      //   router.push('/login')
-      //   return
-      // }
-
       try {
         toast.info('Authenticating...')
         const response = await fetch('/api/signin', {
@@ -55,8 +47,23 @@ export default function CallbackPage() {
           const userData = await userResponse.json()
           localStorage.setItem('casdoorUser', JSON.stringify(userData))
           localStorage.removeItem('casdoorState')
+          // Set auth cookie on successful login
+          document.cookie = 'auth=true; path=/'
           toast.success('Successfully logged in!')
-          router.push('/')
+          
+          // Check for redirect URL
+          const redirectTo = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('redirectTo='))
+            ?.split('=')[1]
+
+          if (redirectTo) {
+            // Clear redirect cookie
+            document.cookie = 'redirectTo=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT'
+            router.push(decodeURIComponent(redirectTo))
+          } else {
+            router.push('/home')
+          }
         } else {
           throw new Error('Failed to get access token')
         }

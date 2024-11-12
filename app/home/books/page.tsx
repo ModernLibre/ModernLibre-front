@@ -2,13 +2,23 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookList } from "@/components/book-list"
-import { Library } from 'lucide-react'
-import { DashboardNav } from "@/components/dashboard-nav"
+import { Library, ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export default function BooksPage() {
   return (
     <>
-      <DashboardNav />
+      <div className="flex items-center gap-4 mb-6">
+        <Link 
+          href="/home" 
+          className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back
+        </Link>
+        <h2 className="text-2xl font-bold">Books Management</h2>
+      </div>
+
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Card>

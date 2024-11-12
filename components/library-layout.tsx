@@ -8,6 +8,7 @@ import { UserMenu } from "@/components/user-menu"
 import { Search } from 'lucide-react'
 import Link from 'next/link'
 import { LucideIcon } from 'lucide-react'
+import { useAuth } from '@/components/auth-provider'
 
 interface LibraryLayoutProps {
   children: React.ReactNode
@@ -23,12 +24,13 @@ export function LibraryLayout({
   searchPlaceholder = "Search books..." 
 }: LibraryLayoutProps) {
   const [searchTerm, setSearchTerm] = useState('')
+  const { user } = useAuth()
 
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
         <div className="container flex items-center justify-between h-16">
-          <Link href="/">
+          <Link href={user ? "/home" : "/"}>
             <h1 className="text-2xl font-bold">ModernLibre</h1>
           </Link>
           <div className="flex-1 max-w-xl mx-8">

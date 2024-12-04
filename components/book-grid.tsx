@@ -58,7 +58,7 @@ const mockBooks: Book[] = [
     rating: 4.9,
     status: 1,
     cover_url: "/static/books/design-of-everyday-things.jpg",
-    addedDate: new Date().toISOString()
+    added_date: new Date().toISOString()
   },
   {
     id: 1002,
@@ -68,7 +68,7 @@ const mockBooks: Book[] = [
     rating: 4.8,
     status: 1,
     cover_url: "/static/books/atomic-habits1.jpg",
-    addedDate: new Date().toISOString()
+    added_date: new Date().toISOString()
   },
 
   {
@@ -79,7 +79,7 @@ const mockBooks: Book[] = [
     rating: 4.7,
     status: 1,
     cover_url: "/static/books/deep-work1.jpg",
-    addedDate: new Date().toISOString()
+    added_date: new Date().toISOString()
   },
   {
     id: 1004,
@@ -89,7 +89,7 @@ const mockBooks: Book[] = [
     rating: 4.7,
     status: 1,
     cover_url: "/static/books/psychology-of-money.jpg",
-    addedDate: new Date().toISOString()
+    added_date: new Date().toISOString()
   },
   {
     id: 1323,
@@ -98,7 +98,7 @@ const mockBooks: Book[] = [
     description: "A comprehensive guide to Rust programming.",
     status: 1,
     rating: 4.5,
-    addedDate: "2023-11-04T20:48:30"
+    added_date: "2023-11-04T20:48:30"
   }
 ]
 

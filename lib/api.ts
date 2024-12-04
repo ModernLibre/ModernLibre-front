@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-const API_BASE_URL = process.env.API_BASE_URL || '/back-api';
+const LIBRE_BACKEND_URL = process.env.NEXT_PUBLIC_LIBRE_BACKEND_URL;
 const TIMEOUT_MS = 5000; // 5 seconds timeout
 
 // Create an in-memory cache for books
@@ -47,7 +47,7 @@ export const fetchBook = cache(async (id: number) => {
   }
 
   try {
-    const response = await fetchWithTimeout(`${API_BASE_URL}/library/${id}`);
+    const response = await fetchWithTimeout(`${LIBRE_BACKEND_URL}/books/details/${id}`);
     const data = await response.json();
     
     // Update cache
@@ -73,7 +73,7 @@ export const fetchBooks = cache(async () => {
   }
 
   try {
-    const response = await fetchWithTimeout(`${API_BASE_URL}/library`);
+    const response = await fetchWithTimeout(`${LIBRE_BACKEND_URL}/books/list`);
     const data = await response.json();
     
     // Update cache

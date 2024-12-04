@@ -10,7 +10,7 @@ export interface Book {
   description?: string
   status?: number
   rating?: number
-  addedDate?: string
+  added_date?: string
   cover_url?: string
 }
 

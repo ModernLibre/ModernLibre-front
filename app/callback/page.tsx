@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { initCasdoorSDK } from '@/lib/casdoor'
 import { toast } from 'sonner'
 
-export default function CallbackPage() {
+function CallbackContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   
@@ -86,3 +86,13 @@ export default function CallbackPage() {
     </div>
   )
 }
+
+function CallbackPageWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CallbackContent />
+    </Suspense>
+  )
+}
+
+export default CallbackPageWrapper

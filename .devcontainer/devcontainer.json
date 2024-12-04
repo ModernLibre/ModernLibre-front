@@ -1,0 +1,16 @@
+{
+	"name": "Node.js & TypeScript",
+	// 使用官方 TypeScript-Node 的基础镜像
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	// 在容器创建后运行的命令
+	"postCreateCommand": "npm install && npx next dev",
+	// 如果需要转发端口，可以在这里配置
+	"forwardPorts": [
+		3000
+	]// 3000 是 Next.js 默认端口
+	// 其他可选配置
+	// "features": {},
+	// "customizations": {},
+	// 如果需要以 root 用户连接容器
+	// "remoteUser": "root"
+}

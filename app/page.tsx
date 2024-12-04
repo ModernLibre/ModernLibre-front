@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { SearchBar } from '@/components/search-bar'
 import { UserMenu } from '@/components/user-menu'
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, BookMarked, Users, Download } from 'lucide-react'
@@ -10,13 +9,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
-        <div className="container flex items-center justify-between h-16">
-          <Link href="/">
+        <div className="container mx-auto px-6 flex items-center justify-between h-16">
+          {/* 左侧：Logo */}
+          <Link href="/" className="flex-shrink-0">
             <h1 className="text-2xl font-bold">ModernLibre</h1>
           </Link>
-          <div className="flex-1 max-w-xl mx-8">
-            <SearchBar />
-          </div>
+
+          {/* 右侧：用户菜单和模式切换 */}
           <div className="flex items-center gap-4">
             <ModeToggle />
             <UserMenu />
@@ -24,7 +23,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="container py-12 space-y-12">
+      <main className="container mx-auto py-12 space-y-12 px-6">
         <section className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold tracking-tight mb-4">Your Digital Library Experience</h2>
           <p className="text-xl text-muted-foreground mb-8">

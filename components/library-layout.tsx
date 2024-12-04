@@ -29,10 +29,13 @@ export function LibraryLayout({
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
-        <div className="container flex items-center justify-between h-16">
-          <Link href={user ? "/home" : "/"}>
+        <div className="container mx-auto px-6 flex items-center justify-between h-16">
+          {/* 左侧：Logo */}
+          <Link href={user ? "/home" : "/"} className="flex-shrink-0">
             <h1 className="text-2xl font-bold">ModernLibre</h1>
           </Link>
+
+          {/* 中间：搜索栏 */}
           <div className="flex-1 max-w-xl mx-8">
             <div className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -44,6 +47,8 @@ export function LibraryLayout({
               />
             </div>
           </div>
+
+          {/* 右侧：用户菜单和模式切换 */}
           <div className="flex items-center gap-4">
             <ModeToggle />
             <UserMenu />
@@ -51,15 +56,21 @@ export function LibraryLayout({
         </div>
       </header>
 
-      <div className="container py-6 flex gap-6">
+      <div className="container flex pt-6 gap-6 mx-auto px-6">
+        {/* 左侧：Sidebar */}
         <Sidebar className="w-64 flex-shrink-0" />
+
+        {/* 主内容区域 */}
         <main className="flex-1">
+          {/* 标题和图标 */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold flex items-center gap-2">
               <Icon className="h-6 w-6" />
               {title}
             </h2>
           </div>
+
+          {/* 子内容 */}
           {children}
         </main>
       </div>

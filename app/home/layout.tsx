@@ -1,7 +1,6 @@
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserMenu } from "@/components/user-menu"
 import Link from 'next/link'
-import { useAuth } from '@/components/auth-provider'
 
 export default function HomeLayout({
   children,

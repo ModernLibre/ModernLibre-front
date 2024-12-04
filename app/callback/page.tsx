@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { initCasdoorSDK } from '@/lib/casdoor'
 import { toast } from 'sonner'
+import { revalidatePath } from 'next/cache'
 
 export default function CallbackPage() {
   const router = useRouter()
@@ -61,8 +62,10 @@ export default function CallbackPage() {
             // Clear redirect cookie
             document.cookie = 'redirectTo=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT'
             router.push(decodeURIComponent(redirectTo))
+            revalidatePath(redirectTo)
           } else {
             router.push('/home')
+            revalidatePath('/home')
           }
         } else {
           throw new Error('Failed to get access token')

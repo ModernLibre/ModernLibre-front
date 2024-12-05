@@ -16,7 +16,7 @@ import { User, LogOut, Settings } from 'lucide-react'
 import Link from 'next/link'
 
 export function UserMenu() {
-  const { user, logout, loading } = useAuth()
+  const { user, login, logout, loading } = useAuth()
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -31,9 +31,12 @@ export function UserMenu() {
 
   if (!user) {
     return (
-      <Link href="/login">
-        <Button variant="outline">Sign In</Button>
-      </Link>
+      <Button 
+        onClick={login} 
+        variant="outline"
+      >
+        Sign In
+      </Button>
     )
   }
 

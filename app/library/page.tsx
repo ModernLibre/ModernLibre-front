@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { BookGrid } from "@/components/book-grid"
+import { BookGrid } from "../../components/book-grid"
 import { BookMarked, Search } from 'lucide-react'
-import { LibraryLayout } from '@/components/library-layout'
+import { LibraryLayout } from '../../components/library-layout'
 
 export default function LibraryPage() {
   return (

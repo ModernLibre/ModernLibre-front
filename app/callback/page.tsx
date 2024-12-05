@@ -13,7 +13,6 @@ function CallbackContent() {
     const handleCallback = async () => {
       const code = searchParams.get('code')
       const state = searchParams.get('state')
-      const storedState = localStorage.getItem('casdoorState')
 
       console.log('Callback received:', { code, state })
 
@@ -26,7 +25,7 @@ function CallbackContent() {
 
       try {
         toast.info('Authenticating...')
-        const response = await fetch('/api/signin', {
+        const token_response = await fetch('/api/signin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -34,7 +33,7 @@ function CallbackContent() {
           body: JSON.stringify({ code, state }),
         })
 
-        const data = await response.json()
+        const data = await token_response.json()
 
         if (data.success && data.accessToken) {
           // Get user info with the access token
@@ -62,7 +61,7 @@ function CallbackContent() {
             document.cookie = 'redirectTo=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT'
             router.push(decodeURIComponent(redirectTo))
           } else {
-            router.push('/home')
+            router.push('/library')
           }
         } else {
           throw new Error('Failed to get access token')

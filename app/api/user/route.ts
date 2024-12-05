@@ -4,9 +4,9 @@ import { headers } from 'next/headers'
 export async function GET(request: Request) {
   try {
     const headersList = headers()
-    const token = (await headersList).get('authorization')?.split(' ')[1]
+    const access_token = (await headersList).get('authorization')?.split(' ')[1]
 
-    if (!token) {
+    if (!access_token) {
       return NextResponse.json(
         { error: 'No token provided' },
         { status: 401 }
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_CASDOOR_SERVER_URL}/api/userinfo`, {
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${access_token}`
       }
     })
 

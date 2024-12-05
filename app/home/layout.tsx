@@ -10,17 +10,20 @@ export default function HomeLayout({
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
-        <div className="container flex items-center justify-between h-16">
-          <Link href="/home">
+        <div className="container mx-auto px-6 flex items-center justify-between h-16">
+          {/* 左侧：Logo */}
+          <Link href="/home" className="flex-shrink-0">
             <h1 className="text-2xl font-bold">ModernLibre</h1>
           </Link>
+
+          {/* 右侧：ModeToggle 和 UserMenu */}
           <div className="flex items-center gap-4">
             <ModeToggle />
             <UserMenu />
           </div>
         </div>
       </header>
-      <main className="container py-6">
+      <main className="container mx-auto px-6 py-6">
         {children}
       </main>
     </div>

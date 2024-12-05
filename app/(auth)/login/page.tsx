@@ -15,8 +15,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background relative">
-      <Link 
-        href="/library" 
+      <Link
+        href="/library"
         className="absolute top-4 left-4 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -31,13 +31,13 @@ export default function LoginPage() {
           <CardDescription>Choose your preferred login method</CardDescription>
         </CardHeader>
         <CardContent>
-              <Button 
-                className="w-full" 
-                onClick={login}
-                variant="outline"
-              >
-                Sign in with Casdoor
-              </Button>
+          <Button
+            className="w-full"
+            onClick={login}
+            variant="outline"
+          >
+            Sign in with Casdoor
+          </Button>
         </CardContent>
       </Card>
     </div>
